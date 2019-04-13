@@ -1,0 +1,28 @@
+{
+  "name": "ztsite2",
+  "version": "1.0.0",
+  "description": "Second version of the zerotwo site written with vue",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pinnouse/ZTSite2.git"
+  },
+  "keywords": [
+    "vue",
+    "zerotwo",
+    "nodejs"
+  ],
+  "author": "Nicholas Wong",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pinnouse/ZTSite2/issues"
+  },
+  "homepage": "https://github.com/pinnouse/ZTSite2#readme",
+  "dependencies": {
+    "express": "^4.16.4",
+    "request": "^2.88.0"
+  }
+}
