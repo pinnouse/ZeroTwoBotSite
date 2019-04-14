@@ -48,9 +48,36 @@ app.get('/', (req, res) => {
             var tag = "${clientData.tag}";
             var commands = ${JSON.stringify(clientData.commands)};
             var prefix = "${clientData.prefix}";
-        </script>`
+        </script>`,
+        avatarUrl: clientData.avatar
     });
 });
+
+app.get('/commands', (req, res) => {
+    res.render('commands', {
+        client: `<script>
+            var guilds = ${clientData.guilds.length};
+            var avatar = "${clientData.avatar}";
+            var tag = "${clientData.tag}";
+            var commands = ${JSON.stringify(clientData.commands)};
+            var prefix = "${clientData.prefix}";
+        </script>`,
+        avatarUrl: clientData.avatar
+    });
+});
+
+app.get('/donation-thanks', (req, res) => {
+    res.render('donation-thanks', {
+        client: `<script>
+            var guilds = ${clientData.guilds.length};
+            var avatar = "${clientData.avatar}";
+            var tag = "${clientData.tag}";
+            var commands = ${JSON.stringify(clientData.commands)};
+            var prefix = "${clientData.prefix}";
+        </script>`,
+        avatarUrl: clientData.avatar
+    });
+})
 
 app.listen(PORT, () => {
     updateInformation();
@@ -64,6 +91,7 @@ function updateInformation() {
     }, (error, res, body) => {
         if (error) {
             console.error(error);
+            console.log("Failed to connect");
             return;
         }
 

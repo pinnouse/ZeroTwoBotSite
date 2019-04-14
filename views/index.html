@@ -11,13 +11,30 @@
         <link href="static/css/style.css" rel="stylesheet">
     </head>
     <body>
-        
-        <div id="app">
-            {{ message }}
-        </div>
+        <header>
+            <a class="home" href="./">
+                <img src="#avatarUrl#">
+            </a>
+            <nav class="navbar">
+                <a href="./commands">Commands</a>
+            </nav>
+        </header>
 
-        <!-- DO NOT TOUCH: client data information -->
-        #client#
+        <div class="container">
+            <div id="app" class="inner-container vertical">
+                <h1>Hey Darling</h1>
+                {{ message }}
+            </div>
+            <div id="about" class="inner-container dark">
+                <span>
+                    You can help support the bot by donating: 
+                    <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=GNP45C37FWV68&source=url">DONATE</a>
+                </span>
+            </div>
+        </div>
+        
+
+        <!-- DO NOT TOUCH - CLIENT DATA INFORMATION -->
         <script src="./static/js/index.js"></script>
     </body>
 </html>
