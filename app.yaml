@@ -1,4 +1,11 @@
 runtime: nodejs10
 instance_class: B1
+
 manual_scaling:
   instances: 1
+
+handlers:
+- url: /.*
+  secure: always
+  redirect_response_code: 301
+  script: auto
