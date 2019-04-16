@@ -2,20 +2,88 @@
 
 <html>
   <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Zero Two Commmands :: GnowBros</title>
 
     <link href="https://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet">
+    <script src="https://vuejs.org/js/vue.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
     <link href="static/css/style.css" rel="stylesheet">
+    <link href="static/css/commands.css" rel="stylesheet">
   </head>
   <body>
       <header>
           <a class="home" href="./">
+              <span>HOME</span>
               <img src="#avatarUrl#">
           </a>
           <nav class="navbar">
-              <a href="./commands">Commands</a>
+              <a href="./commands">COMMANDS</a>
+              <a href="https://discordapp.com/api/oauth2/authorize?client_id=456124032866320393&scope=bot">INVITE</a>
           </nav>
       </header>
+
+      
+      <div class="container">
+        <div id="commands" class="inner-container">
+          <div id="command-categories">
+            <h2>Categories:</h2>
+            <span v-for="category in categories" v-on:click="addCategory(category)" :class="category.replace('!', '')">{{ category }}</span>
+            <p>
+              <span>&lt; &gt;</span> are required arguments
+              <br />
+              <span>&lbrack; &rbrack;</span> are optional arguments
+            </p>
+          </div>
+          <div id="command-list">
+            <form>
+              <input id="search" name="search" type="text" placeholder="SEARCH COMMANDS 🔎" autocomplete="off" v-model="searchQuery">
+            </form>
+            <command-list
+              :columns="columns"
+              :commands="commandList"
+              :filter-key="searchQuery">
+            </command-list>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        &COPY; 2019 Nicholas Wong
+      </footer>
+
+      <!-- DO NOT TOUCH - CLIENT DATA INFORMATION -->
+      #client#
+      <script type="text/x-template" id="grid-template">
+        <div>
+          <span v-if="commands.length === 0" style="display: block; text-align: center; margin-bottom: 10px; width: 60vw;">Select a category on the left first</span>
+          <table>
+            <thead>
+              <tr>
+                <th v-for="column in columns">
+                  {{ column }}
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-if="commands.length > 0" v-for="command in filteredCommandList">
+                <td>
+                  <span>{{ command.name }}</span>
+                  <span class="category">{{ command.category }}</span>
+                </td>
+                <td>{{ command.description }}</td>
+                <td v-html="command.usage"></td>
+              </tr>
+              <tr v-if="commands.length === 0">
+                <td colspan="3">Nothing selected</td>
+              </tr>
+              </tbody>
+          </table>
+        </div>
+      </script>
+      <script src="./static/js/commands.js"></script>
   </body>
 </html>

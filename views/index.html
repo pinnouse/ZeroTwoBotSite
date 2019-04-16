@@ -1,40 +1,126 @@
 <!DOCTYPE html>
 
 <html>
-    <head>
 
-        <title>Zero Two Bot :: GnowBros</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <link href="https://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet">
-        <script src="https://cdn.jsdelivr.net/npm/vue"></script>
-        
-        <link href="static/css/style.css" rel="stylesheet">
-    </head>
-    <body>
-        <header>
-            <a class="home" href="./">
-                <img src="#avatarUrl#">
-            </a>
-            <nav class="navbar">
-                <a href="./commands">Commands</a>
-            </nav>
-        </header>
+    <title>Zero Two Bot :: GnowBros</title>
 
-        <div class="container">
-            <div id="app" class="inner-container vertical">
-                <h1>Hey Darling</h1>
-                {{ message }}
-            </div>
-            <div id="about" class="inner-container dark">
-                <span>
-                    You can help support the bot by donating: 
-                    <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=GNP45C37FWV68&source=url">DONATE</a>
-                </span>
+    <link href="https://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet">
+    <script src="https://vuejs.org/js/vue.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <link href="static/css/style.css" rel="stylesheet">
+    <link href="static/css/home.css" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <a class="home" href="./">
+            <span>HOME</span>
+            <img src="#avatarUrl#">
+        </a>
+        <nav class="navbar">
+            <a href="./commands">COMMANDS</a>
+            <a href="https://discordapp.com/api/oauth2/authorize?client_id=456124032866320393&scope=bot">INVITE</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div id="hero" class="inner-container vertical">
+            <h1>Hey Darling 💕</h1>
+            <p>I'm a <i>hot</i> waifu Discord bot based on <b>ゼロツー (Zero Two)</b> from <b>ダーリン・イン・ザ・フランキス (Darling in the FranXX)</b></p>
+            <p>I serve a variety of needs and have tons of functionality + features</p>
+            <span class="buttons">
+                <a href="./commands">COMMANDS</a>
+                <a href="https://discordapp.com/api/oauth2/authorize?client_id=456124032866320393&scope=bot">INVITE ME</a>
+                <a href="https://discord.gg">SUPPORT SERVER</a>
+            </span>
+        </div>
+        <div id="features" class="inner-container vertical dark">
+            <h2>Features 🎶</h2>
+            <ul>
+                <li>Voice (YouTube playback)</li>
+                <li>Anime (Search on AniList)</li>
+                <li>NSFW (<i>booru</i>-like, see commands for details)</li>
+                <li>Custom Prefixes</li>
+                <li>8 Ball and other fun games</li>
+                <li>Osu! (Player searching)</li>
+                <li>AI Chatbot! Just mention <span class="mention">@ZeroTwo</span> followed by your message!</li>
+            </ul>
+        </div>
+        <div id="stats" class="inner-container">
+            <h2>Currently Serving 💼</h2>
+            <div id="stats-chart">
+                <div class="stat">
+                    <h2>{{ guilds }}</h2>
+                    <p>guilds</p>
+                </div>
+                <div class="stat">
+                    <h2>{{ users }}</h2>
+                    <p>users</p>
+                </div>
+                <div class="stat">
+                    <h2>Some</h2>
+                    <p>voice channels</p>
+                </div>
+                <div class="stat">
+                    <h2>You 🍞</h2>
+                    <p>with 🍯</p>
+                </div>
             </div>
         </div>
-        
+        <div class="inner-container dark">
+            <p class="block">
+                Need your help to speak more languages!
+                Add some more languages, or contribute to the development.
+                If you got some programming know-how (JavaScript), you could help make this bot even sexier.
+                <br />
+                <br />
+                View the project on
+                <a href="https://github.com/pinnouse/ZeroTwoBot">GitHub</a>
+            </p>
+            <h2>Open Source 📖</h2>
+        </div>
+        <div id="donate" class="inner-container vertical">
+            <h2>Support 💰</h2>
+            <p class="block">
+                It costs my own pocket money to support and maintain this bot.
+                My goal for this project is to provide greatness for the community.
+                If this bot grows and grows, trying to maintain it will likely be difficult.
+                Sorry to those that might expect a reward, but all I can provide to you is gratitude is you do decide to donate.
+                <br />
+                <br />
+                Or help by contributing to the project (see above).
+            </p>
+            <p style="font-size: 10pt; margin-bottom: 1em;">
+                Or not because it's a free service, but it would be really awesome if you helped to support the ongoing maintenance and development of the project.
+            </p>
+            <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=GNP45C37FWV68&source=url">DONATE</a>
+        </div>
+        <div class="inner-container vertical" style="min-height: unset; padding-bottom: 100px;">
+            <h3>But what if you wanna contact me? 💌</h3>
+            <p class="quote">
+                Discord: <span class="mention">@pinnouse#7766</span>
+                <br />
+                Email: <a href="mailto:futawong@owo.soy">futawong@owo.soy</a>
+                <br />
+                Twitter: <a href="https://twitter.com/GnowBros">@GnowBros</a>
+                <br />
+                GitHub: <a href="https://github.com/pinnouse">pinnouse</a>
+            </p>
+        </div>
+    </div>
 
-        <!-- DO NOT TOUCH - CLIENT DATA INFORMATION -->
-        <script src="./static/js/index.js"></script>
-    </body>
+    <footer>
+        &COPY; 2019 Nicholas Wong
+    </footer>
+
+    <!-- DO NOT TOUCH - CLIENT DATA INFORMATION -->
+    #client#
+    <script src="./static/js/index.js"></script>
+</body>
+
 </html>

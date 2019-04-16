@@ -12,6 +12,7 @@ const PORT = config.port || 8080;
 // Request variables
 var intv;
 var clientData;
+var totalUsers = 0;
 const POST_DATA = {
     key: crypto.createHash('md5').update(config.key).digest('hex')
 };
@@ -41,42 +42,15 @@ app.set('view engine', 'html');
 app.use('/static', express.static('views/static'));
 
 app.get('/', (req, res) => {
-    res.render('index', {
-        client: `<script>
-            var guilds = ${clientData.guilds.length};
-            var avatar = "${clientData.avatar}";
-            var tag = "${clientData.tag}";
-            var commands = ${JSON.stringify(clientData.commands)};
-            var prefix = "${clientData.prefix}";
-        </script>`,
-        avatarUrl: clientData.avatar
-    });
+    res.render('index', getTemplates());
 });
 
 app.get('/commands', (req, res) => {
-    res.render('commands', {
-        client: `<script>
-            var guilds = ${clientData.guilds.length};
-            var avatar = "${clientData.avatar}";
-            var tag = "${clientData.tag}";
-            var commands = ${JSON.stringify(clientData.commands)};
-            var prefix = "${clientData.prefix}";
-        </script>`,
-        avatarUrl: clientData.avatar
-    });
+    res.render('commands', getTemplates());
 });
 
 app.get('/donation-thanks', (req, res) => {
-    res.render('donation-thanks', {
-        client: `<script>
-            var guilds = ${clientData.guilds.length};
-            var avatar = "${clientData.avatar}";
-            var tag = "${clientData.tag}";
-            var commands = ${JSON.stringify(clientData.commands)};
-            var prefix = "${clientData.prefix}";
-        </script>`,
-        avatarUrl: clientData.avatar
-    });
+    res.render('donation-thanks', getTemplates());
 })
 
 app.listen(PORT, () => {
@@ -99,6 +73,22 @@ function updateInformation() {
             var now = new Date();
             console.log(`Updated data at: ${now.toUTCString()}`)
             clientData = JSON.parse(body);
+            totalUsers = 0;
+            clientData.guilds.forEach(([_, gld]) => { totalUsers += gld.memberCount });
         }
     });
+}
+
+function getTemplates() {
+    return {
+        client: `<script>
+            var guilds = ${clientData.guilds.length || 0};
+            var users = ${totalUsers};
+            var avatar = "${clientData.avatar}";
+            var tag = "${clientData.tag}";
+            var commands = new Map(${JSON.stringify(clientData.commands) || "[]"});
+            var prefix = "${clientData.prefix}";
+        </script>`,
+        avatarUrl: clientData.avatar
+    }
 }

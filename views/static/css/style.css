@@ -1,4 +1,5 @@
 body {
+    position: relative;
     font-family: 'Comfortaa', Arial, Helvetica, sans-serif;
     color: #404040;
     margin: 0;
@@ -11,40 +12,64 @@ a {
 }
 
 header {
+    z-index: 100;
     position: fixed;
     display: block;
     top: 0;
     left: 0;
-    height: 60px;
+    height: 40px;
     width: 100%;
     background-color: #b0b0b0;
     box-shadow: 0 2px 12px 3px rgba(24, 24, 24, 0.14);
+    transition: background-color 230ms;
+}
+
+header.color {
+    background-color: #c65558;
 }
 
 header > * {
     position: relative;
-    height: 44px;
-    margin: 8px;
+    height: 100%;
 }
 
 header > .home {
-    display: inline-block;
-    border: 2px solid #ffffff;
-    border-radius: 50%;
-    margin: 6px;
-    overflow: hidden;
-    transition: 
-        opacity 240ms,
-        border-radius 140ms;
+    position: relative;
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    color: #e0e0e0;
+    width: 20px;
+    margin: 0;
+    height: 20px;
+    padding: 10px;
+    background-color: #202020;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    transition: width 320ms cubic-bezier(0.215, 0.610, 0.355, 1);
 }
 
 header > .home:hover {
-    opacity: 0.7;
-    border-radius: 35%;
+    color: #ffffff;
+    width: 92px;
 }
 
 header > .home > img {
-    height: 100%;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+}
+
+header > .home > span {
+    font-size: 20px;
+    padding-right: 6px;
+    opacity: 0;
+    transition: 320ms;
+}
+
+header > .home:hover > span {
+    opacity: 1;
 }
 
 header > .navbar {
@@ -55,24 +80,48 @@ header > .navbar {
     align-items: center;
 }
 
+header > .navbar > *:last-child {
+    padding-right: 16px;
+}
+
 header > .navbar > a {
+    height: 20px;
+    font-size: 20px;
     display: inline-block;
-    padding: 8px;
-    color: #efefef;
+    position: relative;
+    padding:  10px 10px 10px 20px;
+    color: #e0e0e0;
+    transition: color 200ms;
 }
 
 header > .navbar > a:hover {
     color: #ffffff;
 }
 
+header > .navbar > a::before {
+    content: "";
+    z-index: -1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100vw;
+    background-color: rgba(16, 16, 16, 0.34);
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
 footer {
-    position: fixed;
+    z-index: 100;
+    font-family: Arial, Helvetica, sans-serif;
+    position: absolute;
     bottom: 0;
     left: 0;
     width: 100%;
     height: 16px;
     text-align: center;
     font-size: 10pt;
+    background-color: #ffffff;
 }
 
 .container {
@@ -91,7 +140,7 @@ footer {
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    min-height: 300px;
+    min-height: 74vh;
 }
 
 .inner-container.dark {
@@ -103,7 +152,21 @@ footer {
     flex-direction: column;
 }
 
-.inner-container h1 {
+.inner-container:not(.vertical) > * {
+    max-width: 50vw;
+    padding: 24px;
+}
+
+.inner-container.vertical > * {
+    max-width: 60vw;
+}
+
+.inner-container h1,
+.inner-container h2,
+.inner-container h3,
+.inner-container h4,
+.inner-container h5,
+.inner-container h6 {
     margin: 8px 0;
 }
 
@@ -112,6 +175,10 @@ footer {
     position: relative;
     padding: 2px;
     color: #efa09f;
+}
+
+.inner-container a:hover {
+    text-decoration: underline;
 }
 
 .inner-container a::before {
@@ -145,4 +212,63 @@ footer {
     padding: 2px;
     border-radius: 3px;
     background-color: #ffffff;
+}
+
+.inner-container p {
+    text-align: center;
+    margin: 4px 0;
+}
+
+.inner-container p.block {
+    text-align: justify;
+    width: 30vw;
+    line-height: 1.6em;
+}
+
+.inner-container p.quote {
+    width: 30vw;
+    padding: 40px;
+    text-align: left;
+    background: #fbfbfb;
+    line-height: 1.6em;
+}
+
+.inner-container ul {
+    margin: 4px 0;
+}
+
+.inner-container li {
+    margin: 10px 0;
+}
+
+.inner-container .mention {
+    cursor: default;
+    font-family: Helvetica, Arial, sans-serif;
+    color: #7289DA;
+    background-color: rgba(114, 137, 218, .1);
+    padding: 1px 2px;
+}
+
+.inner-container .mention:hover {
+    color: #ffffff;
+    background-color: rgba(114, 137, 218, .7);
+}
+
+.buttons a {
+    display: inline-block;
+    margin-top: 13px;
+    padding: 13px;
+    border: 2px solid #efa09f;
+    border-radius: 4px;
+}
+
+.buttons a:hover {
+    color: #efefef;
+    text-decoration: none;
+}
+
+.buttons a::before {
+    padding: 0;
+    border: 2px solid #efefef;
+    background-color: #ec8a8a;
 }
