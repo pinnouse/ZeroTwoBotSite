@@ -7,5 +7,5 @@ manual_scaling:
 handlers:
 - url: /.*
   secure: always
-  redirect_response_code: 301
+  redirect_http_response_code: 301
   script: auto
