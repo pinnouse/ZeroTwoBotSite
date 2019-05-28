@@ -19,6 +19,7 @@
   text-indent: 0;
   background-color: #efefef;
   transition: 120ms;
+  cursor: pointer;
 }
 
 #command-categories > span.selected {
