@@ -75,7 +75,7 @@ function updateInformation() {
 
         if (res.statusCode === 200 && body) {
             var now = new Date();
-            console.log(`Updated data at: ${now.toUTCString()}`)
+            // console.log(`Updated data at: ${now.toUTCString()}`);
             clientData = JSON.parse(body);
             totalUsers = 0;
             if (clientData != undefined)
