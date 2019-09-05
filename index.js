@@ -51,7 +51,11 @@ app.get('/commands', (req, res) => {
 
 app.get('/donation-thanks', (req, res) => {
     res.render('donation-thanks', getTemplates());
-})
+});
+
+app.get('/.well-known/cf-2fa-verify.txt', (req, res) => {
+    res.send('7ecabbc5d41c7cb');
+});
 
 app.listen(PORT, () => {
     updateInformation();
@@ -74,7 +78,8 @@ function updateInformation() {
             console.log(`Updated data at: ${now.toUTCString()}`)
             clientData = JSON.parse(body);
             totalUsers = 0;
-            clientData.guilds.forEach(([_, gld]) => { totalUsers += gld.memberCount });
+            if (clientData != undefined)
+                clientData.guilds.forEach(([_, gld]) => { totalUsers += gld.memberCount });
         }
     });
 }
