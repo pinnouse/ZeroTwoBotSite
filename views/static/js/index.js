@@ -8,8 +8,6 @@ var statsChart = new Vue({
 $(() => {
   var statsFilled = false;
 
-  var animated = false;
-
   var ticks = 20;
 
   function scrollCheck() {

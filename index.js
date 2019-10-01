@@ -29,7 +29,8 @@ app.engine('html', (filePath, options, callback) => {
         Object.entries(options).filter(([key, _]) => {
             return !["settings", "_locals", "cache"].includes(key);
         }).forEach(([key, value]) => {
-            rendered = rendered.replace(`#${key}#`, value);
+            let re = new RegExp(`#${key}#`, "g");
+            rendered = rendered.replace(re, value);
         });
 
         return callback(null, rendered);
@@ -65,7 +66,7 @@ app.listen(PORT, () => {
 
 function updateInformation() {
     request.post(`${config.botServer.url}:${config.botServer.port}`, {
-        form: { key: crypto.createHash('md5').update(config.key).digest('hex') }
+        form: POST_DATA
     }, (error, res, body) => {
         if (error) {
             console.error(error);

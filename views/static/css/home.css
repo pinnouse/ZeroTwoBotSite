@@ -26,6 +26,32 @@
   background: linear-gradient(90deg, #ffffff 50%, rgba(255, 255, 255, 0.88), transparent);
 }
 
+#hero > .avatar {
+  position: relative;
+  pointer-events: none;
+  animation: floatAround 4s cubic-bezier(0.645, 0.045, 0.355, 1) infinite;
+}
+
+#hero > .avatar > img {
+  position: relative;
+  height: 148px;
+  border: 4px solid #4e4a4a;
+  border-radius: 50%;
+  box-shadow: 2px 5px 10px 2px #20202027;
+}
+
+#hero > .avatar::after {
+  content: '';
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  padding: 16px;
+  background: #70ee27;
+  border: 4px solid #4e4a4a;
+  border-radius: 50%;
+  box-shadow: 3px 5px 10px 2px #2020203b;
+}
+
 #stats-chart {
   display: flex;
   flex-direction: row;
@@ -57,7 +83,25 @@
   font-size: 10pt;
 }
 
-@media only screen and (min-width: 1054px) {
+/*************
+* ANIMATIONS *
+*************/
+@keyframes floatAround {
+  0% {
+    transform: translateY(-4px);
+  }
+  50% {
+    transform: translateY(5px);
+  }
+  100% {
+    transform: translateY(-4px);
+  }
+}
+
+/*************
+* RESPONSIVE *
+*************/
+@media only screen and (max-width: 1054px) {
   #stats-chart {
     max-width: 100%;
   }

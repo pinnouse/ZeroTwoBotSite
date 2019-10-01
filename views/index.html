@@ -31,6 +31,12 @@
             <img src="#avatarUrl#">
         </a>
         <nav class="navbar">
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <span class="ham-close"></span>
             <a href="./commands">COMMANDS</a>
             <a href="https://discordapp.com/api/oauth2/authorize?client_id=456124032866320393&scope=bot">INVITE</a>
             <a href="https://discord.gg/XZXD2gU">SERVER</a>
@@ -39,6 +45,9 @@
 
     <div class="container">
         <div id="hero" class="inner-container vertical">
+            <div class="avatar">
+                <img src="#avatarUrl#">
+            </div>
             <h1>Hey Darling 💕</h1>
             <p>I'm a <i>hot</i> waifu Discord bot based on <b>ゼロツー (Zero Two)</b> from <b>ダーリン・イン・ザ・フランキス (Darling in the FranXX)</b></p>
             <p>I serve a variety of needs and have tons of functionality + features</p>
@@ -60,12 +69,12 @@
                 </div>
             </div>
             <div class="horizontal ffr">
-                <div class="preview">
-                    <img src="https://d1aplag8m1artw.cloudfront.net/osu-api.gif" />
-                </div>
                 <div>
                     <h3>API Integration</h3>
                     <p>Interact with tons of services you already love (ie. AniList, Osu!, League, etc.)</p>
+                </div>
+                <div class="preview">
+                    <img src="https://d1aplag8m1artw.cloudfront.net/osu-api.gif" />
                 </div>
             </div>
         </div>
@@ -138,6 +147,7 @@
 
     <!-- DO NOT TOUCH - CLIENT DATA INFORMATION -->
     #client#
+    <script src="./static/js/hamburger.js"></script>
     <script src="./static/js/index.js"></script>
 </body>
 
