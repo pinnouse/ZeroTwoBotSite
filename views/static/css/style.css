@@ -207,6 +207,10 @@ footer {
     background-color: #ffffff;
 }
 
+.inner-container.reverse {
+    flex-direction: row-reverse;
+}
+
 .inner-container p {
     text-align: center;
     margin: 4px 0;
@@ -329,5 +333,20 @@ footer {
     100% {
         left: 0px;
         opacity: 1;
+    }
+}
+
+/*************
+* RESPONSIVE *
+*************/
+@media only screen and (max-width: 1054px) {
+    .inner-container {
+        flex-direction: column !important;
+        max-width: 100vw;
+    }
+
+    .inner-container p.block {
+        max-width: 80%;
+        width: unset;
     }
 }

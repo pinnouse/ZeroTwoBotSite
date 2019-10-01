@@ -1,6 +1,7 @@
 #commands {
   align-items: flex-start;
   margin: 60px 0;
+  text-align: center;
 }
 
 #command-categories {
@@ -8,9 +9,11 @@
   top: 60px;
   left: 10px;
   width: auto;
+  text-align: left;
 }
 
 #command-categories > span {
+  position: relative;
   display: block;
   cursor: default;
   font-size: 16pt;
@@ -20,6 +23,16 @@
   background-color: #efefef;
   transition: 120ms;
   cursor: pointer;
+}
+
+#command-categories > span::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 0;
+  width: 100%;
+  border-top: 1px solid black;
 }
 
 #command-categories > span.selected {
@@ -47,6 +60,7 @@
 
 #command-list {
   max-width: 60vw;
+  margin: 0 auto;
 }
 
 #command-list table {
@@ -131,4 +145,32 @@ tr > td > div > span {
   margin: 0;
   padding: 2px;
   background-color: #ffffff;
+}
+
+.anim-enter-active, .anim-leave-active {
+  transition: all 260ms;
+}
+
+.anim-enter, .anim-leave-to {
+  opacity: 0;
+  transform: translateX(-20px);
+}
+
+@media only screen and (max-width: 1054px) {
+  #command-categories {
+    position: relative;
+    margin: 0 auto;
+    top: 0;
+    left: 0;
+  }
+
+  #command-categories > span {
+    display: inline-block;
+    margin: 12px;
+  }
+
+  #command-categories > p {
+    position: relative;
+    top: 0;
+  }
 }

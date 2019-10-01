@@ -7,7 +7,7 @@
     <link rel="shortcut icon" href="static/favicon/favicon.ico">
     <link rel="apple-touch-icon" sizes="180x180" href="static/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="static/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="static/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="static/favicon/favicon-16x16.png">
     <link rel="manifest" href="static/favicon/site.webmanifest">
     <link rel="mask-icon" href="static/favicon/safari-pinned-tab.svg" color="#5bbad5">
     <meta name="msapplication-TileColor" content="#f0867f">
@@ -77,8 +77,8 @@
                 </th>
               </tr>
             </thead>
-            <tbody>
-              <tr v-if="commands.length > 0" v-for="command in filteredCommandList">
+            <transition-group name="anim" tag="tbody">
+              <tr v-if="commands.length > 0" v-for="command in filteredCommandList" :key="command">
                 <td>
                   <span>{{ command.name }}</span>
                   <span class="category">{{ command.category }}</span>
@@ -89,7 +89,7 @@
               <tr v-if="commands.length === 0">
                 <td colspan="3">Nothing selected</td>
               </tr>
-              </tbody>
+            </transition-group>
           </table>
         </div>
       </script>
