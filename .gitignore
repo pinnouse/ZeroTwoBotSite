@@ -76,3 +76,4 @@ typings/
 .fusebox/
 
 config.json
+app.yaml
