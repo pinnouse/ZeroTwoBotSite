@@ -58,15 +58,15 @@ app.get('/.well-known/cf-2fa-verify.txt', (req, res) => {
     res.send('7ecabbc5d41c7cb');
 });
 
-updateInformation.then(() => {
+updateInformation().then(() => {
+    intv = setInterval(updateInformation, 300000);
     app.listen(PORT, () => {
-        intv = setInterval(updateInformation, 300000);
         console.log(`Listening on port: ${PORT}`);
     });
 });
 
 async function updateInformation() {
-    const { status, data } = axios.post(`${config.botServer.url}:${config.botServer.port}`, {
+    const { status, data } = await axios.post(`${config.botServer.url}:${config.botServer.port}`, {
         POST_DATA
     });
     if (status !== 200) return;
