@@ -2,7 +2,7 @@
 
 const express = require('express');
 const fs = require('fs');
-const request = require('request');
+const axios = require('axios');
 const crypto = require('crypto');
 
 const config = require('./config.json');
@@ -58,31 +58,21 @@ app.get('/.well-known/cf-2fa-verify.txt', (req, res) => {
     res.send('7ecabbc5d41c7cb');
 });
 
-app.listen(PORT, () => {
-    updateInformation();
-    intv = setInterval(updateInformation, 300000);
-    console.log(`Listening on port: ${PORT}`);
+updateInformation.then(() => {
+    app.listen(PORT, () => {
+        intv = setInterval(updateInformation, 300000);
+        console.log(`Listening on port: ${PORT}`);
+    });
 });
 
-function updateInformation() {
-    request.post(`${config.botServer.url}:${config.botServer.port}`, {
-        form: POST_DATA
-    }, (error, res, body) => {
-        if (error) {
-            console.error(error);
-            console.log("Failed to connect");
-            return;
-        }
-
-        if (res.statusCode === 200 && body) {
-            var now = new Date();
-            // console.log(`Updated data at: ${now.toUTCString()}`);
-            clientData = JSON.parse(body);
-            totalUsers = 0;
-            if (clientData != undefined)
-                clientData.guilds.forEach(([_, gld]) => { totalUsers += gld.memberCount });
-        }
+async function updateInformation() {
+    const { status, data } = axios.post(`${config.botServer.url}:${config.botServer.port}`, {
+        POST_DATA
     });
+    if (status !== 200) return;
+    clientData = data;
+    totalUsers = 0;
+    clientData.guilds.forEach(([_, gld]) => { totalUsers += gld.memberCount });
 }
 
 function getTemplates() {
