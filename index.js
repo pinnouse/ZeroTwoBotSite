@@ -13,9 +13,7 @@ const PORT = config.port || 8080;
 var intv;
 var clientData;
 var totalUsers = 0;
-const POST_DATA = {
-    key: crypto.createHash('md5').update(config.key).digest('hex')
-};
+const AUTH_KEY = crypto.createHash('md5').update(config.key).digest('hex');
 
 // Server variabless
 var app = express();
@@ -66,9 +64,9 @@ updateInformation().then(() => {
 });
 
 async function updateInformation() {
-    const { status, data } = await axios.post(`${config.botServer.url}:${config.botServer.port}`, {
-        POST_DATA
-    });
+    const params = new URLSearchParams();
+    params.append('key', AUTH_KEY);
+    const { status, data } = await axios.post(`${config.botServer.url}:${config.botServer.port}`, params);
     if (status !== 200) return;
     clientData = data;
     totalUsers = 0;
