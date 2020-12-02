@@ -61,7 +61,7 @@ updateInformation().then(() => {
     app.listen(PORT, () => {
         console.log(`Listening on port: ${PORT}`);
     });
-});
+}).catch(console.error);
 
 async function updateInformation() {
     const params = new URLSearchParams();
