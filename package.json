@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/pinnouse/ZTSite2#readme",
   "dependencies": {
-    "axios": "^0.20.0",
+    "axios": "^0.21.1",
     "express": "^4.17.1"
   }
 }
