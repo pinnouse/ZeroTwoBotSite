@@ -1,0 +1,9 @@
+node_modules/
+.vscode/
+README
+LICENSE
+app.yaml
+.gcloudignore
+.dockerignore
+npm-debug.log
+Dockerfile
