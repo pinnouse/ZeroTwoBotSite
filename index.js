@@ -7,7 +7,7 @@ const crypto = require('crypto');
 
 const config = require('./config.json');
 
-const PORT = process.env.port || config.port || 8080;
+const PORT = process.env.port || config.port || 3000;
 
 // Request variables
 var intv;
