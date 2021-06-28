@@ -7,11 +7,11 @@ const crypto = require('crypto');
 
 const config = require('./config.json');
 
-const PORT = process.env.port || config.port || 3000;
+const PORT = process.env.PORT || config.port || 3000;
 
 // Request variables
 var intv;
-var clientData;
+var clientData = {};
 var totalUsers = 0;
 const AUTH_KEY = crypto.createHash('md5').update(config.key).digest('hex');
 
@@ -66,17 +66,25 @@ updateInformation().then(() => {
 async function updateInformation() {
     const params = new URLSearchParams();
     params.append('key', AUTH_KEY);
-    const { status, data } = await axios.post(`${config.botServer.url}:${config.botServer.port}`, params);
-    if (status !== 200) return;
-    clientData = data;
-    totalUsers = 0;
-    clientData.guilds.forEach(([_, gld]) => { totalUsers += gld.memberCount });
+    try {
+        const { status, data } = await axios.post(`${config.botServer.url}:${config.botServer.port}`, params);
+        if (status !== 200) return;
+        clientData = data;
+        totalUsers = 0;
+        clientData.guilds.forEach(([_, gld]) => { totalUsers += gld.memberCount });
+    } catch(e) {
+        if (e.response) {
+            console.error(`Axios error: (${e.response.status}) ${e.response.data}`);
+        } else {
+            console.error(e);
+        }
+    }
 }
 
 function getTemplates() {
     return {
         client: `<script>
-            var guilds = ${clientData.guilds.length || 0};
+            var guilds = ${clientData.guilds ? clientData.guilds.length || 0 : 0};
             var users = ${totalUsers};
             var avatar = "${clientData.avatar}";
             var tag = "${clientData.tag}";
